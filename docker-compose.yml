@@ -1,0 +1,12 @@
+java-kubernetes-example:
+  build: .
+  ports:
+    - "8080:8080"
+  volumes:
+    - ~/.gradle:/root/.gradle
+    - .:/app
+    - ./.gradle:/app/.gradle
+  environment:
+    - SPRING_PROFILES_ACTIVE=dev
+    - GRADLE_USER_HOME=/root
+  command: sh -c "./gradlew -t build & ./gradlew -t bootRun"
